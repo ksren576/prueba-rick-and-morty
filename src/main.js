@@ -1,8 +1,7 @@
 import { Serie } from './serie';
 import { Personaje } from './personaje';
 
-
-const modulo = (() => {
+const programa = (() => {
     const urlBase = 'https://rickandmortyapi.com/api';
     let cantidadPersonajes = null;
 
@@ -19,13 +18,22 @@ const modulo = (() => {
     return {
         obtenerDatos: async () => {
             const instanciaSerie = new Serie("Rick and Morty");
-            const personajes = await obtenerDatosAPI(urlBase + '/character');
+            const personajes = await obtenerDatosAPI(`${urlBase}/character`);
             cantidadPersonajes = personajes.length;
             personajes.forEach((personaje) => {
-                const instanciaPersonaje = new Personaje(personaje.id, personaje.name, personaje.species, personaje.image);
+                const instanciaPersonaje = new Personaje(
+                    personaje.id,
+                    personaje.name,
+                    personaje.species,
+                    personaje.image,
+                    personaje.gender,
+                    personaje.origin.name,
+                    personaje.location.name,
+                    personaje.status);
                 instanciaSerie.agregarPersonajes(instanciaPersonaje);
             });
             instanciaSerie.getPersonajes();
+            instanciaSerie.crearModales();
         },
         cargarCantidadDePersonajes: () => {
             const elementoCantidadPersonajes = document.getElementById('cantidadPersonajes');
@@ -37,6 +45,5 @@ const modulo = (() => {
     };
 })();
 
-modulo.obtenerDatos();
-
-setTimeout(modulo.cargarCantidadDePersonajes, 2000);
+programa.obtenerDatos();
+setTimeout(programa.cargarCantidadDePersonajes, 2000);

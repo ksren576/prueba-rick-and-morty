@@ -1,5 +1,5 @@
 export class Personaje {
-    constructor(id, nombre, especie, imagen) {
+    constructor(id, nombre, especie, imagen, genero, origen, locacion, estado) {
         this.obtenerId = function() {
             let _id = id;
             function _getId() {
@@ -27,6 +27,34 @@ export class Personaje {
                 return _especie;
             }
             return _getEspecie();
+        }
+        this.obtenerGenero = function () {
+            let _genero = genero;
+            function _getGenero() {
+                return _genero;
+            }
+            return _getGenero();
+        }
+        this.obtenerOrigen = function () {
+            let _origen = origen;
+            function _getOrigen() {
+                return _origen;
+            }
+            return _getOrigen();
+        }
+        this.obtenerLocacion = function () {
+            let _locacion = locacion;
+            function _getLocacion() {
+                return _locacion;
+            }
+            return _getLocacion();
+        }
+        this.obtenerEstado = function () {
+            let _estado = estado;
+            function _getEstado() {
+                return _estado;
+            }
+            return _getEstado();
         }
     }
 }
